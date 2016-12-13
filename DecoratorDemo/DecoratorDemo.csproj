@@ -63,11 +63,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CachingCustomerRepository.cs" />
     <Compile Include="CachingCustomerRepositoryTests.cs" />
     <Compile Include="Customer.cs" />
     <Compile Include="CustomerController.cs" />
     <Compile Include="CustomerControllerEndToEndTests.cs" />
     <Compile Include="CustomerControllerTests.cs" />
+    <Compile Include="CustomerSqlRepository.cs" />
     <Compile Include="CustomerSqlRepositoryIntegrationTests.cs" />
     <Compile Include="DecoratorDemoDbContext.cs" />
     <Compile Include="ICustomerRepository.cs" />

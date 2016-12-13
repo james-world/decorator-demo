@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Caching;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using NSubstitute;
 using NUnit.Framework;
@@ -79,7 +81,7 @@ namespace DecoratorDemo
     public class CachingCustomerRepository : ICustomerRepository
     {
         private readonly ICustomerRepository repository;
-        private readonly Dictionary<int, Customer> cache = new Dictionary<int, Customer>();
+        private readonly MemoryCache cache = new MemoryCache(typeof(CachingCustomerRepository).FullName);
         private readonly TimeSpan timeSpan;
 
         public CachingCustomerRepository(ICustomerRepository repository, TimeSpan cacheEntryLifetime)
@@ -95,11 +97,21 @@ namespace DecoratorDemo
 
         public Customer GetById(int customerId)
         {
-            if (cache.ContainsKey(customerId))
-                return cache[customerId];
+            var customer = (Customer)cache.Get(customerId.ToString());
+            if (customer != null)
+                return customer;
 
-            var customer = repository.GetById(customerId);
-            cache.Add(customerId, customer);
+            customer = repository.GetById(customerId);
+
+            var expiry = DateTime.UtcNow.Add(timeSpan);
+            var cacheEntry = new CacheItem(customerId.ToString(), customer);
+            var cachePolicy = new CacheItemPolicy
+            {
+                AbsoluteExpiration = new DateTimeOffset(expiry)
+            };
+
+            cache.Add(cacheEntry, cachePolicy);
+
             return customer;
         }
     }

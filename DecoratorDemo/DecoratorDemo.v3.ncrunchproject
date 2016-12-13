@@ -1,0 +1,10 @@
+﻿<ProjectConfiguration>
+  <Settings>
+    <IgnoredTests>
+      <FixtureTestSelector>
+        <FixtureName>DecoratorDemo.CustomerSqlRepositoryIntegrationTests</FixtureName>
+      </FixtureTestSelector>
+    </IgnoredTests>
+    <PreviouslyBuiltSuccessfully>True</PreviouslyBuiltSuccessfully>
+  </Settings>
+</ProjectConfiguration>

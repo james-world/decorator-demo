@@ -4,6 +4,9 @@
       <FixtureTestSelector>
         <FixtureName>DecoratorDemo.CustomerSqlRepositoryIntegrationTests</FixtureName>
       </FixtureTestSelector>
+      <NamedTestSelector>
+        <TestName>DecoratorDemo.CustomerControllerEndToEndTests.CustomerSavedAndRetrieved</TestName>
+      </NamedTestSelector>
     </IgnoredTests>
     <PreviouslyBuiltSuccessfully>True</PreviouslyBuiltSuccessfully>
   </Settings>

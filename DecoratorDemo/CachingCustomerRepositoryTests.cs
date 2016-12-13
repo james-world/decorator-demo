@@ -103,6 +103,9 @@ namespace DecoratorDemo
 
             customer = repository.GetById(customerId);
 
+            if (customer == null)
+                return null;
+
             var expiry = DateTime.UtcNow.Add(timeSpan);
             var cacheEntry = new CacheItem(customerId.ToString(), customer);
             var cachePolicy = new CacheItemPolicy

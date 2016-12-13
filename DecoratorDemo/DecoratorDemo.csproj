@@ -62,6 +62,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CachingCustomerRepositoryTests.cs" />
     <Compile Include="Customer.cs" />
     <Compile Include="CustomerController.cs" />
     <Compile Include="CustomerControllerTests.cs" />
